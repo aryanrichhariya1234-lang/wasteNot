@@ -28,7 +28,7 @@ export default function RegisterOptions() {
               </h2>
               <p className="text-sm text-gray-600 mb-6">
                 Help distribute excess food from providers to those in need.
-                It's a simple act that makes a huge difference.
+                It&apos;s a simple act that makes a huge difference.
               </p>
               <Link href="/register/volunteer">
                 <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300">
@@ -43,8 +43,8 @@ export default function RegisterOptions() {
                 Food Provider
               </h2>
               <p className="text-sm text-gray-600 mb-6">
-                Have excess food you can't use? Partner with us to ensure it
-                reaches people, not landfills.
+                Have excess food you can&apos;t use? Partner with us to ensure
+                it reaches people, not landfills.
               </p>
               <Link href="/register/provider">
                 <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300">

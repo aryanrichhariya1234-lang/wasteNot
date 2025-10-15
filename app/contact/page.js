@@ -41,8 +41,8 @@ export default async function ContactUs() {
               Contact Us
             </h1>
             <p className="text-center text-gray-600 mb-8">
-              Have a question or want to get involved? We'd love to hear from
-              you.
+              Have a question or want to get involved? We&apos;d love to hear
+              from you.
             </p>
 
             {/* Contact Form */}

@@ -50,8 +50,9 @@ export default function About() {
               <p className="text-lg text-gray-700 leading-relaxed">
                 By facilitating these pickups, we rescue perfectly good food and
                 deliver it to community shelters, food banks, and individuals in
-                need. We're not just fighting food waste; we're building
-                stronger, more sustainable communities, one meal at a time.
+                need. We&apos;re not just fighting food waste; we&apos;re
+                building stronger, more sustainable communities, one meal at a
+                time.
               </p>
             </section>
 
