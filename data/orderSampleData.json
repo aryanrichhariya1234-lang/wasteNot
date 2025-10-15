@@ -1,0 +1,102 @@
+[
+  {
+    "providerId": 4,
+    "foodProvider": "Sunrise Bakery",
+    "items": "30 loaves of artisan bread, 15 boxes of assorted pastries.",
+    "weight": 15,
+    "position": "lat: 34.0522, lng: -118.2437",
+    "isDelivered": true,
+    "volunteerId": 2,
+    "pickupTime": "2025-09-25T14:30:00.000Z"
+  },
+  {
+    "providerId": 4,
+    "foodProvider": "Veggies R Us Market",
+    "items": "5 boxes of mixed fresh produce (carrots, lettuce, tomatoes).",
+    "weight": 55,
+    "position": "lat: 34.0753, lng: -118.2936",
+    "isDelivered": false,
+    "volunteerId": null,
+    "pickupTime": "2025-09-26T10:15:00.000Z"
+  },
+  {
+    "providerId": 7,
+    "foodProvider": "Chef's Kitchen Diner",
+    "items": "3 large trays of pre-cooked rice and beans, 2 gallons of soup.",
+    "weight": 42,
+    "position": "lat: 34.1084, lng: -118.3364",
+    "isDelivered": true,
+    "volunteerId": 3,
+    "pickupTime": "2025-09-26T22:45:00.000Z"
+  },
+  {
+    "providerId": 7,
+    "foodProvider": "Sunrise Bakery",
+    "items": "40 dozen bagels, 5 cases of day-old muffins.",
+    "weight": 22,
+    "position": "lat: 34.0596, lng: -118.2325",
+    "isDelivered": false,
+    "volunteerId": null,
+    "pickupTime": "2025-10-03T15:00:00.000Z"
+  },
+  {
+    "providerId": 7,
+    "foodProvider": "Global Grocer Store",
+    "items": "10 cases of canned vegetables, 5 cases of dry pasta.",
+    "weight": 75,
+    "position": "lat: 33.9926, lng: -118.2831",
+    "isDelivered": true,
+    "volunteerId": 2,
+    "pickupTime": "2025-09-23T16:00:00.000Z"
+  },
+  {
+    "providerId": 7,
+    "foodProvider": "The Dairy Farm Outlet",
+    "items": "50 gallons of milk nearing expiration, 10 lbs of surplus cheese.",
+    "weight": 60,
+    "position": "lat: 34.0194, lng: -118.4912",
+    "isDelivered": false,
+    "volunteerId": null,
+    "pickupTime": "2025-09-26T08:30:00.000Z"
+  },
+  {
+    "providerId": 4,
+    "foodProvider": "Veggies R Us Market",
+    "items": "15 bags of oranges, 10 crates of potatoes.",
+    "weight": 88,
+    "position": "lat: 34.0628, lng: -118.4024",
+    "isDelivered": true,
+    "volunteerId": 3,
+    "pickupTime": "2025-08-15T13:00:00.000Z"
+  },
+  {
+    "providerId": 4,
+    "foodProvider": "University Cafeteria",
+    "items": "Leftover individually packed salads and sandwiches (total 150 units).",
+    "weight": 35,
+    "position": "lat: 34.0689, lng: -118.4452",
+    "isDelivered": true,
+    "volunteerId": 2,
+    "pickupTime": "2025-08-15T13:00:00.000Z"
+  },
+  {
+    "providerId": 4,
+    "foodProvider": "Chef's Kitchen Diner",
+    "items": "4 trays of roasted chicken and vegetables.",
+    "weight": 30,
+    "position": "lat: 34.1528, lng: -118.1311",
+    "isDelivered": false,
+    "volunteerId": null,
+    "pickupTime": "2025-09-27T09:00:00.000Z"
+  },
+  {
+    "providerId": 4,
+    "foodProvider": "The Dairy Farm Outlet",
+    "items": "12 cases of yogurt, 5 boxes of butter.",
+    "weight": 40,
+    "position": "lat: 34.0326, lng: -118.2690",
+    "isDelivered": true,
+    "volunteerId": 3,
+    "pickupTime": "2025-09-19T11:00:00.000Z"
+  }
+]
