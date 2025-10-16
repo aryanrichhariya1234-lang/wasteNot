@@ -8,7 +8,7 @@ import { getAddress, getPosition } from "../_utils/utils";
 import { getOrderOnClient } from "../_lib/clientSideFunctions";
 import ActivePickupsBar from "./ActivePickUpsBar";
 
-function AppComponent({ orderList, provider, volunteer, userId }) {
+function AppComponent({ orderList, provider, volunteer, userId, profileId }) {
   const [position, setPosition] = useState(null);
   const [cityName, setCityName] = useState("");
   const router = useRouter();
@@ -74,6 +74,7 @@ function AppComponent({ orderList, provider, volunteer, userId }) {
           cityName={cityName}
           provider={provider}
           volunteer={volunteer}
+          profileId={profileId}
           handlePickup={handlePickup}
           id={id}
           setId={setId}

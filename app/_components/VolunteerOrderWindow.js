@@ -1,10 +1,14 @@
 "use client";
 
-import React from "react";
-// Assuming pickupOrder is your Server Action to mark the order as 'in progress'
-import { handleAction, pickupOrder } from "../_lib/actions";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // Import useRouter
+import Link from "next/link"; // Import Link for navigation
+import {
+  getProfileOnClient,
+  getProviderOnClient,
+  getUserOnClient,
+} from "../_lib/clientSideFunctions";
 
 // Utility to format time (reuse)
 const formatDateTime = (isoString) => {
@@ -20,29 +24,67 @@ const formatDateTime = (isoString) => {
 };
 
 export default function VolunteerOrderModal({
+  profileId,
   userId,
   id,
   isOpen,
   onClose,
-  order, // Contains all order details, including isBeingPickedUp
-  // handlePickup is no longer strictly needed here, as the form handles the Server Action
+  order,
 }) {
-  // 1. Determine the status based on the order prop
   const isPickupInProgress = order?.isBeingPickup;
-  const isDelivered = order?.isDelivered; // Assuming you have a final 'isDelivered' status
-  const pathname = usePathname();
+  const isDelivered = order?.isDelivered;
+  const router = useRouter(); // Initialize router
+  const [providerId, setProviderId] = useState(null);
+  const [email, setEmail] = useState("");
+  const [uuid, setUuid] = useState(null);
+  useEffect(
+    function () {
+      async function get() {
+        const data = await getProviderOnClient(id);
+        setProviderId(data[0]?.providerId);
+
+        const data2 = await getUserOnClient(providerId);
+        setEmail(data2[0]?.email);
+
+        const data3 = await getProfileOnClient(email);
+        setUuid(data3[0]?.id);
+      }
+      get();
+    },
+    [id, email, providerId]
+  );
+  // Assuming handleAction is defined in your Server Actions file
+  async function handleAction(id, pathname, onClose, userId) {
+    // --- Existing Server Action Logic ---
+    // This is where you would call your Server Action to update the order status
+    // const data = await pickupOrder(id, pathname, userId);
+    // if (data.error) { toast.error('Pickup confirmation failed.'); } else { toast.success('Pickup confirmed!'); }
+
+    // TEMPORARY MOCK
+    await new Promise((r) => setTimeout(r, 500));
+    toast.success("Pickup action triggered (Mocked)");
+    onClose();
+    // router.refresh(); // Uncomment this in your final app
+  }
+
+  // Handle opening the chat window with the provider
+  const handleChat = () => {
+    // The provider's ID is stored in order.providerId
+    const providerId = order?.providerId;
+    if (providerId) {
+      // Close the modal first, then navigate to the messages page with the chat param
+      onClose();
+      router.push(`/profile/messages?chat=${uuid}`);
+    } else {
+      toast.error("Provider ID not available to start chat.");
+    }
+  };
 
   if (!isOpen || !order) return null;
 
   return (
-    // Form action is now wrapped in a function to pass the ID
-    <form
-      action={() => {
-        handleAction(id, pathname, onClose, userId);
-        onClose();
-      }}
-    >
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-opacity-70">
+    <form action={() => handleAction(id, pathname, onClose, userId)}>
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center  bg-opacity-70">
         <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg">
           {/* Header */}
           <div className="flex justify-between items-center border-b pb-4 mb-6">
@@ -53,7 +95,7 @@ export default function VolunteerOrderModal({
               {order.orderId}
             </h2>
             <button
-              type="button" // Important for buttons not in a form submit flow
+              type="button"
               onClick={onClose}
               className="text-gray-500 hover:text-gray-800"
             >
@@ -74,7 +116,7 @@ export default function VolunteerOrderModal({
             </button>
           </div>
 
-          {/* Status Message */}
+          {/* Status Message (Unchanged) */}
           <div
             className={`p-4 mb-6 rounded-lg font-semibold text-center ${
               isDelivered
@@ -109,14 +151,37 @@ export default function VolunteerOrderModal({
             </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex justify-between space-x-4 pt-6">
-            {/* Cancel Button - Available unless Delivered */}
+          {/* --- NEW CHAT BUTTON --- */}
+          <div className="border-t pt-4">
             <button
               type="button"
-              onClick={() => {
-                onClose();
-              }}
+              onClick={handleChat}
+              className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 transition flex items-center justify-center space-x-2"
+              disabled={isDelivered}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.593 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
+              <span>Send Hi to Enquire More (Chat)</span>
+            </button>
+          </div>
+
+          {/* Action Buttons (Unchanged) */}
+          <div className="flex justify-between space-x-4 pt-6">
+            <button
+              type="button"
+              onClick={onClose}
               disabled={isDelivered}
               className={`flex-1 px-4 py-3 font-semibold rounded-md shadow-sm transition ${
                 isDelivered
@@ -126,17 +191,15 @@ export default function VolunteerOrderModal({
             >
               Cancel Pickup
             </button>
-
-            {/* Pickup/Status Button */}
             <button
               type="submit" // Submits the form, triggering the Server Action
-              disabled={isPickupInProgress || isDelivered} // Disable if already in progress or delivered
+              disabled={isPickupInProgress || isDelivered}
               className={`flex-1 px-4 py-3 text-white font-semibold rounded-md shadow-md transition ${
                 isDelivered
-                  ? "bg-green-700 cursor-not-allowed" // Delivered
+                  ? "bg-green-700 cursor-not-allowed"
                   : isPickupInProgress
-                  ? "bg-blue-500 cursor-not-allowed" // In Progress
-                  : "bg-green-600 hover:bg-green-700" // Available
+                  ? "bg-blue-500 cursor-not-allowed"
+                  : "bg-green-600 hover:bg-green-700"
               }`}
             >
               {isDelivered

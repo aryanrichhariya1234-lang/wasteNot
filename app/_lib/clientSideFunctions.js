@@ -23,3 +23,29 @@ export async function getCurrentUserOrders(id) {
   }
   return data;
 }
+
+export async function getProviderOnClient(id) {
+  const { data, error } = await supabaseClient
+    .from("orders")
+    .select("providerId")
+    .eq("id", id);
+  if (error) console.log(error);
+
+  return data;
+}
+export async function getUserOnClient(id) {
+  const { data, error } = await supabaseClient
+    .from("providers")
+    .select("email")
+    .eq("id", id);
+  if (error) console.log(error);
+  return data;
+}
+
+export async function getProfileOnClient(email) {
+  const { data } = await supabaseClient
+    .from("profiles")
+    .select("id")
+    .eq("email", email);
+  return data;
+}

@@ -265,7 +265,6 @@ export async function getMessages() {
 
   // 2. Group messages by chat_room_id and find the ID of the 'other' user
   const recentChatsMap = new Map();
-  console.log(allMessages);
 
   allMessages.forEach((msg) => {
     const roomId = msg.chat_room_id;
@@ -301,7 +300,6 @@ export async function getMessages() {
   if (cerror) {
     console.log(cerror);
   }
-  console.log(userIdsToFetch);
 
   const profileMap = new Map(profiles.map((p) => [p.id, p]));
 
@@ -313,4 +311,13 @@ export async function getMessages() {
   }));
 
   return finalChats;
+}
+
+export async function getProfile(email) {
+  const supabase = await getServerSupabaseClient();
+  const { data } = await supabase
+    .from("profiles")
+    .select("id")
+    .eq("email", email);
+  return data;
 }

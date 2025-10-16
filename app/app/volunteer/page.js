@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getOrders } from "@/app/_lib/data-service";
+import { getOrders, getProfile } from "@/app/_lib/data-service";
 import AppComponent from "@/app/_components/AppComponent";
 import { getServerSupabaseClient } from "@/app/_lib/supabase";
 import { getProvider, getVolunteer } from "@/app/_lib/providers";
@@ -22,6 +22,7 @@ export default async function page() {
   volunteer = true;
   const volunteerId = await getVolunteer(user.data.user.email);
   userId = volunteerId[0].id;
+  const profileId = await getProfile(user.data.user.email);
 
   return (
     <>
@@ -57,6 +58,7 @@ export default async function page() {
           userId={userId}
           volunteer={volunteer}
           orderList={orderList}
+          profileId={profileId}
           provider={provider}
         />
       </div>

@@ -104,8 +104,9 @@ export async function editCurrentForn({ id, formData }) {
 }
 
 export async function createOrder({ formData, position, provider }) {
-  const items = formData.get("position");
+  const items = formData.get("items");
   const weight = formData.get("weight");
+  const foodProvider = formData.get("foodProvider");
   const isDelivered = false;
   const newPosition = `lat: ${position.lat}, lng: ${position.lng}`;
   const order = {
@@ -116,6 +117,7 @@ export async function createOrder({ formData, position, provider }) {
     providerId: provider[0].id,
     pickupTime: now,
     isBeingPickup: false,
+    foodProvider,
   };
   const data = await createNewOrder(order);
   if (data.error) {

@@ -6,6 +6,7 @@ import OrderList from "./OrderList";
 import NewOrderModal from "./NewOrderModal";
 
 function FoodList({
+  profileId,
   userId,
   setCityName,
   orderList: List,
@@ -77,6 +78,7 @@ function FoodList({
             id={id}
             setId={setId}
             isOpen={isOpen}
+            profileId={profileId}
             setIsOpen={setIsOpen}
             order={order}
             setOrder={setOrder}

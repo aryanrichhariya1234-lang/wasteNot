@@ -1,12 +1,10 @@
 // app/_components/ActivePickupsBar.js
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { createPortal } from "react-dom";
-import { handleConfirmPickup as confirmFinalPickup } from "../_lib/clientSideFunctions";
-import toast from "react-hot-toast";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 import { handleConfirmPickup } from "../_lib/actions";
 
 // import { confirmFinalPickup } from '../_lib/actions'; // Placeholder Server Action

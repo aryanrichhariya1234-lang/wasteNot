@@ -4,6 +4,7 @@ import EditOrderModal from "./EditOrder";
 import VolunteerOrderModal from "./VolunteerOrderWindow";
 
 function OrderList({
+  profileId,
   userId,
   List: orderList,
   volunteer,
@@ -36,6 +37,7 @@ function OrderList({
       {isOpen && volunteer && order && (
         <VolunteerOrderModal
           id={id}
+          profileId={profileId}
           userId={userId}
           order={order}
           isOpen={isOpen}

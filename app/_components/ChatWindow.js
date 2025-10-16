@@ -61,7 +61,6 @@ export default function ChatWindow({
       chatBottomRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
-  console.log(targetUserId);
 
   // 3. Sending Messages (No Optimistic Update)
   const sendMessage = async (e) => {
