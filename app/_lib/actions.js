@@ -48,7 +48,7 @@ export async function createProviderAccount(formData) {
   });
   if (createData.error) return null;
 
-  redirect("http://localhost:3000/");
+  redirect("/");
 }
 
 export async function createVolunteerAccount(formData) {
@@ -65,7 +65,7 @@ export async function createVolunteerAccount(formData) {
   }
   const volunteerData = await createVolunteer({ fullName, email, location });
   if (volunteerData.error) return null;
-  redirect("http://localhost:3000/");
+  redirect("/");
 }
 
 export async function loginUserWithEmail(formData) {
@@ -74,7 +74,7 @@ export async function loginUserWithEmail(formData) {
   const password = formData.get("password");
   await loginUser(role, email, password);
 
-  redirect("http://localhost:3000/");
+  redirect("/");
 }
 export async function signOutWithEmail() {
   await signOut();
