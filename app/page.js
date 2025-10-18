@@ -26,7 +26,7 @@ export default async function Home() {
   // Logic to determine the main call-to-action message and link
   const isLoggedIn = !!user;
   let mainActionMessage = "Register Yourself";
-  let mainActionLink = "/register-options";
+  let mainActionLink = "/register";
   let mainActionText = "Register Now";
   let mainActionDescription =
     "Join our mission to end food waste and feed our communities.";
